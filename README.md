@@ -4,7 +4,7 @@
 
 # Tema da Aula
 
-Turma Online XX - Imersão JavaScript | Semana XX | 20XX | Professora Analu
+Turma Online 28 - Imersão JavaScript | Semana 07 | 2023 | Professora Analu
 
 ### Professora Analu
 <h1>

@@ -42,3 +42,38 @@ Temos também a opção por transferência, para realizar esta operação é nec
 
 #### Depósito
 O cliente também pode depositar dinheiro em sua conta, passando apenas o valor a ser depositado.
+
+### Diagrama feito em aula
+  <img src="../../assets/diagrama_bancao.png" alt="diagrama banco" >
+
+### to-do
+- [ ] Cliente
+  - Atributos
+    - [ ] nome
+    - [ ] cpf
+    - [ ] renda
+  - Métodos
+    - [ ] registrar cliente
+  - [ ] Testes
+    - [ ] verificar se instancia é criada
+    - [ ] verificar se dados estão validos
+    - [ ] verificar dados invalidos
+
+- [ ] Conta
+  - Atributos
+    - [ ] agencia
+    - [ ] conta
+    - [ ] saldo
+    - [ ] chavesPix
+  - Métodos
+    - [ ] depositar
+    - [ ] sacar
+    - [ ] transferir
+    - [ ] getSaldo
+    - [ ] setSaldo
+    - [ ] pix
+      - [ ] criar pix
+        - [ ] email
+        - [ ] telefone
+        - [ ] cpf
+
