@@ -1,9 +1,8 @@
 # Exercício de Casa 🏠 
 
-## Nome do Exercicio
-
-- Explicação do exercício: 
-[CONTEUDO] 
+- Construir sistema de acordo com as [régras de negocio](../projeto/README.md)
+- Antes de abrir o PR colocar todo o projeto dentro de da pasta de entrega com seu nome.
+> apague a node modules antes de fazer essa movimentação
 ---
 
 Terminou o exercício? Dá uma olhada nessa checklist e confere se tá tudo certinho, combinado?!
