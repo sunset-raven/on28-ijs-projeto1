@@ -10,82 +10,39 @@ class ContaGold extends Conta {
   }
 
   criarContaGold(agencia, conta, saldo, renda) {
-    if (renda < 5000 || renda > 17999) {
+    if (this.verificarRenda(renda) !== "gold") {
       throw new Error("Renda inválida");
     }
+    this.renda = renda;
 
-    if (agencia.length === 4 && conta.length === 5 && saldo > 0) {
-      this.setAgencia(agencia);
-      this.setConta(conta);
-      this.setSaldo(saldo);
-
-      this.renda = renda;
-
-      return "Conta criada com sucesso";
-    } else {
-      throw new Error("Dados inválidos para cadastro");
-    }
+    return super.criarConta(agencia, conta, saldo);
   }
 
   transferir(valor, agencia, conta) {
-    let contaValida = Conta.listaContas.find((contaReceptora) => {
-      let numeroContaReceptora = contaReceptora.getConta();
-      let numeroAgenciaReceptora = contaReceptora.getAgencia();
-      return (
-        numeroContaReceptora === conta && numeroAgenciaReceptora === agencia
-      );
-    });
-
-    if (!contaValida) {
-      throw new Error("Conta não encontrada");
-    }
-
-    if (valor < 0) {
-      throw new Error("Valor inválido para transferência");
-    }
-
     if (valor > this.#limiteTransacional) {
       throw new Error("Limite transacional ultrapassado");
     }
 
-    if (this.getSaldo() - valor < 0) {
-      throw new Error("Saldo insuficiente");
-    } else {
-      const saldoAtualizado = this.getSaldo() - valor;
-      this.setSaldo(saldoAtualizado);
-      const saldoContaReceptora = contaValida.getSaldo() + valor;
-      contaValida.setSaldo(saldoContaReceptora);
-      return "Transferência realizada";
-    }
+    return super.transferir(valor, agencia, conta);
   }
 
-  pix(valor, chavePix, tipo) {
-    let contaValida = Conta.listaContas.find(
-      (conta) => conta.chavesPix[tipo] === chavePix
-    );
-
-    if (!contaValida) {
-      throw new Error("Chave não encontrada");
-    }
-
+  fazerPix(valor, chavePix, tipo) {
     if (valor > this.#limiteTransacional) {
       throw new Error("Limite transacional ultrapassado");
     }
 
-    if (valor < 0) {
-      throw new Error("Valor inválido para transferência");
-    }
-
-    if (this.getSaldo() - valor < 0) {
-      throw new Error("Saldo insuficiente");
-    } else {
-      const saldoAtualizado = this.getSaldo() - valor;
-      this.setSaldo(saldoAtualizado);
-      const saldoContaReceptora = contaValida.getSaldo() + valor;
-      contaValida.setSaldo(saldoContaReceptora);
-      return "Transferência realizada";
-    }
+    return super.fazerPix(valor, chavePix, tipo);
   }
 }
+
+// let conta1 = new ContaGold();
+// console.log(conta1.criarContaGold("1234", "12345", 1000, 6000));
+// let conta2 = new ContaGold("4321", "54321", 1000, 6000);
+
+// conta2.criarChavePix("12345678912", "cpf");
+// console.log(conta1.fazerPix(500, "12345678912", "cpf"));
+
+// console.log(conta1.getSaldo());
+// console.log(conta2.getSaldo());
 
 module.exports = ContaGold;

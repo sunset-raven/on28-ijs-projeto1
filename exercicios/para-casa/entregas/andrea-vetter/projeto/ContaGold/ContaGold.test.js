@@ -47,7 +47,7 @@ describe("Testes da Classe Conta Gold", () => {
       "Renda inválida"
     );
 
-    contaGold.destruir();
+    conta.destruir();
   });
 
   // teste de saque
@@ -248,7 +248,7 @@ describe("Testes da Classe Conta Gold", () => {
     contaReceptor.criarContaGold("4321", "54321", 1000, 6000);
     contaReceptor.criarChavePix("teste@email.com", "email");
 
-    expect(contaEmissor.pix(100, "teste@email.com", "email")).toBe(
+    expect(contaEmissor.fazerPix(100, "teste@email.com", "email")).toBe(
       "Transferência realizada"
     );
     expect(contaEmissor.getSaldo()).toBe(900);
@@ -266,7 +266,7 @@ describe("Testes da Classe Conta Gold", () => {
     contaReceptor.criarContaGold("4321", "54321", 1000, 6000);
     contaReceptor.criarChavePix("teste@email.com", "email");
 
-    expect(() => contaEmissor.pix(-100, "teste@email.com", "email")).toThrow(
+    expect(() => contaEmissor.fazerPix(-100, "teste@email.com", "email")).toThrow(
       "Valor inválido para transferência"
     );
 
@@ -282,7 +282,7 @@ describe("Testes da Classe Conta Gold", () => {
     contaReceptor.criarContaGold("4321", "54321", 1000, 6000);
     contaReceptor.criarChavePix("teste@email.com", "email");
 
-    expect(() => contaEmissor.pix(600, "teste@email.com", "email")).toThrow(
+    expect(() => contaEmissor.fazerPix(600, "teste@email.com", "email")).toThrow(
       "Saldo insuficiente"
     );
 
@@ -299,7 +299,7 @@ describe("Testes da Classe Conta Gold", () => {
     contaReceptor.criarChavePix("teste@email.com", "email");
 
     expect(() =>
-      contaEmissor.pix(100, "teste.erro@email.com", "email")
+      contaEmissor.fazerPix(100, "teste.erro@email.com", "email")
     ).toThrow("Chave não encontrada");
 
     contaEmissor.destruir();

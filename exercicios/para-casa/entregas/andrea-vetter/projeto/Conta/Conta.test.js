@@ -178,29 +178,16 @@ describe("Testes da Classe Conta", () => {
     conta.destruir();
   });
 
-  /**
-   * TRANFERENCIA
-   * emissor = conta q esta enviando o dinheiro
-   * recepto = conta q está recebendo esse dinheiro
-   * agencia e conta do receptor
-   * metodo vai precisar de valor, agencia do Receptor e conta do Receptor
-   * valor valido
-   * saldo suficiente
-   * dados validos do receptor
-   */
-
+  // testes de transferência
   test("retorna sucesso ao fazer uma transferência com valor válido, saldo suficiente, dados validos", () => {
-    //setup
     const contaEmissor = new Conta();
     const contaReceptor = new Conta();
 
     contaEmissor.criarConta("0001", "12345", 1000);
     contaReceptor.criarConta("0001", "78945", 500);
 
-    //acao
     const operacao = contaEmissor.transferir(100, "0001", "78945");
 
-    //verificacao
     expect(operacao).toBe("Transferência realizada");
     expect(contaEmissor.getSaldo()).toBe(900);
     expect(contaReceptor.getSaldo()).toBe(600);
@@ -217,7 +204,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarConta("4321", "54321", 1000);
     contaReceptor.criarChavePix("teste@email.com", "email");
 
-    expect(contaEmissor.pix(100, "teste@email.com", "email")).toBe(
+    expect(contaEmissor.fazerPix(100, "teste@email.com", "email")).toBe(
       "Transferência realizada"
     );
     expect(contaEmissor.getSaldo()).toBe(900);
@@ -235,7 +222,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarConta("4321", "54321", 1000);
     contaReceptor.criarChavePix("teste@email.com", "email");
 
-    expect(() => contaEmissor.pix(-100, "teste@email.com", "email")).toThrow(
+    expect(() => contaEmissor.fazerPix(-100, "teste@email.com", "email")).toThrow(
       "Valor inválido para transferência"
     );
 
@@ -251,7 +238,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarConta("4321", "54321", 1000);
     contaReceptor.criarChavePix("teste@email.com", "email");
 
-    expect(() => contaEmissor.pix(600, "teste@email.com", "email")).toThrow(
+    expect(() => contaEmissor.fazerPix(600, "teste@email.com", "email")).toThrow(
       "Saldo insuficiente"
     );
 
@@ -268,7 +255,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarChavePix("teste@email.com", "email");
 
     expect(() =>
-      contaEmissor.pix(100, "teste.erro@email.com", "email")
+      contaEmissor.fazerPix(100, "teste.erro@email.com", "email")
     ).toThrow("Chave não encontrada");
 
     contaEmissor.destruir();
